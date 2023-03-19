@@ -3,8 +3,9 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useAddNewPost } from '../useAddNewPost';
 import { postsApi } from '../../../../shared/api/postsApi';
 import { CreateNewPostDTO, Post } from '../../../../shared/types/post';
-import React, { useState } from 'react';
+import React from 'react';
 import { TestWrapper } from '../../../../utils/testWrapper';
+import { BrowserRouter } from 'react-router-dom';
 
 vi.mock('../../../../shared/api/postsApi', () => {
   return {
@@ -14,15 +15,20 @@ vi.mock('../../../../shared/api/postsApi', () => {
   };
 });
 
-// vi.mock('react', () => {
-//   return {
-//     ...vi.importActual('react'),
-//     useState: vi.fn()
-//   };
-// });
-
 describe('AddNewPost', () => {
   describe('useAddNewPost', () => {
+    test('should not crash when called', () => {
+      expect(() => {
+        const updatePostsWithNewPostMock = vi.fn();
+        const hookValue = renderHook(() => useAddNewPost(updatePostsWithNewPostMock));
+      }).not.toThrow();
+    })
+    test('should return default values', () => {
+      const updatePostsWithNewPostMock = vi.fn();
+      const hookValue = renderHook(() => useAddNewPost(updatePostsWithNewPostMock), { wrapper: BrowserRouter });
+      expect(hookValue.result.current.isLoading).toBe(false);
+      expect(hookValue.result.current.isDialogOpen).toBe(false);
+    })
     describe('onCreateNewPostSubmit', () => {
       test('should call postsApi.createNewPost with form values', async () => {
         const updatePostsWithNewPostMock = vi.fn();
