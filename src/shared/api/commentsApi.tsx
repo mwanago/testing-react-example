@@ -1,4 +1,4 @@
-import { CreateComment } from '../types/Comment';
+import { CreateComment, Comment } from '../types/Comment';
 
 export async function createComment(
   newComment: CreateComment,

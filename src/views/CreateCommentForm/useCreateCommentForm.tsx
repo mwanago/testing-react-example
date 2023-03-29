@@ -1,10 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { createComment } from '../../shared/api/commentsApi';
+import { Comment } from '../../shared/types/Comment';
 
 export function useCreateCommentForm() {
   const [name, setName] = useState('');
   const [body, setBody] = useState('');
   const [error, setError] = useState('');
+  const [createdComments, setCreatedComments] = useState<Comment[]>([]);
 
   const handleChangeName = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -18,10 +20,11 @@ export function useCreateCommentForm() {
     event.preventDefault();
     setError('');
     try {
-      await createComment({
+      const newComment = await createComment({
         name,
         body,
       });
+      setCreatedComments([...createdComments, newComment]);
     } catch {
       setError('Something went wrong when creating the comment');
     }
@@ -32,5 +35,6 @@ export function useCreateCommentForm() {
     handleChangeName,
     handleChangeBody,
     error,
+    createdComments,
   };
 }
