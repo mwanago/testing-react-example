@@ -2,20 +2,14 @@ import React from 'react';
 import { useCreateCommentForm } from './useCreateCommentForm';
 
 export const CreateCommentForm = () => {
-  const {
-    handleSubmit,
-    handleChangeName,
-    handleChangeBody,
-    error,
-    createdComments,
-  } = useCreateCommentForm();
+  const { handleSubmit, error, createdComments } = useCreateCommentForm();
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <p>Create your comment:</p>
-        <input name="name" onChange={handleChangeName} />
-        <input name="body" onChange={handleChangeBody} />
+        <input name="name" />
+        <input name="body" />
         <p data-testid="comment-error">{error}</p>
         <button>Create comment</button>
       </form>
