@@ -8,8 +8,8 @@ export const CreateCommentForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <p>Create your comment:</p>
-        <input name="name" />
-        <input name="body" />
+        <input name="name" placeholder="name" />
+        <input name="body" placeholder="body" />
         <p data-testid="comment-error">{error}</p>
         <button>Create comment</button>
       </form>
