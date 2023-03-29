@@ -25,7 +25,7 @@ export const StyledItem = styled(MenuItem)`
   text-transform: capitalize;
   justify-content: center;
   padding: 16px 0;
-  
+
   font-size: 1.5em;
   & > span {
     justify-content: center;

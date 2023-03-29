@@ -5,7 +5,6 @@ export interface Post {
   body: string;
 }
 
-
 export interface CreateNewPostDTO {
   userId: number;
   title: string;

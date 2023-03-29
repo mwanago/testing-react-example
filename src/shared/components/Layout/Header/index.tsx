@@ -1,6 +1,4 @@
-import {
-  HeaderBoxStyled,
-} from './Header.styled';
+import { HeaderBoxStyled } from './Header.styled';
 import { IconButton } from '@mui/material';
 import { useState, MouseEvent } from 'react';
 import { Menu } from '@mui/icons-material';
@@ -17,7 +15,6 @@ export const Header = () => {
     setMenuAnchor(null);
     setIsNavigationOpen(false);
   };
-
 
   return (
     <HeaderBoxStyled>

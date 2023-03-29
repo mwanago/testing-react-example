@@ -4,7 +4,9 @@ import { CreateNewPostDTO, Post } from '../../../shared/types/post';
 import { postsApi } from '../../../shared/api/postsApi';
 import { useNavigate } from 'react-router';
 
-export const useAddNewPost = (updatePostsWithNewPost: (posts: Post) => void) => {
+export const useAddNewPost = (
+  updatePostsWithNewPost: (posts: Post) => void,
+) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -48,5 +50,5 @@ export const useAddNewPost = (updatePostsWithNewPost: (posts: Post) => void) => 
     onCreateNewPostSubmit,
     isLoading,
     handleSubmit,
-  }
-}
+  };
+};

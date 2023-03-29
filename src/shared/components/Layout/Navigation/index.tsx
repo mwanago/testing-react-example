@@ -1,9 +1,6 @@
 import { useNavigate } from 'react-router';
 import { MenuProps } from '@mui/material';
-import {
-  StyledMenu,
-  StyledItem,
-} from './Navigation.styled';
+import { StyledMenu, StyledItem } from './Navigation.styled';
 import { FC } from 'react';
 
 interface Props extends MenuProps {

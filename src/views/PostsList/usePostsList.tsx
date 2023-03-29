@@ -10,7 +10,8 @@ export const usePostsList = () => {
     setPosts(postsResponse);
   }
 
-  const updatePostsWithNewPost = (post: Post) => setPosts([post, ...(posts ?? [])])
+  const updatePostsWithNewPost = (post: Post) =>
+    setPosts([post, ...(posts ?? [])]);
 
   useEffect(() => {
     fetchPosts();
@@ -20,5 +21,5 @@ export const usePostsList = () => {
     posts,
     setPosts,
     updatePostsWithNewPost,
-  }
-}
+  };
+};

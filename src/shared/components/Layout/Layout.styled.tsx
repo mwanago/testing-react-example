@@ -13,7 +13,6 @@ export const Content = styled(Box)`
   overflow: auto;
 `;
 
-
 export const DarkContainer = styled(Container)`
   background: ${(p) => p.theme.palette.primary.main};
   color: ${(p) => p.theme.palette.primary.contrastText};
