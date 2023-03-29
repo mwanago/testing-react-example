@@ -1,5 +1,5 @@
 import { describe, expect, Mock, test, vi } from 'vitest';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { useAddNewPost } from '../useAddNewPost';
 import { postsApi } from '../../../../shared/api/postsApi';
 import { CreateNewPostDTO, Post } from '../../../../shared/types/post';
