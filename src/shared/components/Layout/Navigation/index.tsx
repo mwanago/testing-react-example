@@ -13,6 +13,7 @@ interface Props extends MenuProps {
 const navigationItems = [
   { path: '/', label: 'Home' },
   { path: '/posts', label: 'Posts' },
+  { path: '/counter', label: 'Counter' },
 ];
 
 export const Navigation: FC<Props> = ({ onClose, ...materialProps }) => {
