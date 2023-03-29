@@ -1,9 +1,9 @@
 import React from 'react';
-import { useCreatePostForm } from './useCreatePostForm';
+import { useCreateCommentForm } from './useCreateCommentForm';
 
 export const CreateCommentForm = () => {
   const { handleSubmit, handleChangeName, handleChangeBody, error } =
-    useCreatePostForm();
+    useCreateCommentForm();
 
   return (
     <form onSubmit={handleSubmit}>

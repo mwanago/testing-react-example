@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { createComment } from '../../shared/api/commentsApi';
 
-export function useCreatePostForm() {
+export function useCreateCommentForm() {
   const [name, setName] = useState('');
   const [body, setBody] = useState('');
   const [error, setError] = useState('');
