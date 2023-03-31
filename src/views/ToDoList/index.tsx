@@ -29,7 +29,7 @@ export const ToDoList = () => {
         >
           Add task
         </button>
-        {error && <p data-testid="comment-error">{error}</p>}
+        {error && <p data-testid="to-do-list-comment-error">{error}</p>}
       </div>
       <div className="lists-wrapper">
         {toDoList && (

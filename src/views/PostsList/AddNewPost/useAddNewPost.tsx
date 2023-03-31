@@ -31,7 +31,7 @@ export const useAddNewPost = (
     const newPost = await postsApi.createNewPost(formValues);
     updatePostsWithNewPost(newPost);
     setLoading(false);
-    navigate('/')
+    navigate('/');
   };
 
   const handleClickOpen = () => {

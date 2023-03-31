@@ -30,7 +30,7 @@ async function deleteTask(taskId: number) {
   return deleteTaskResponse.json();
 }
 
-export const tasksApi = {
+export const toDosApi = {
   fetchToDos,
   createNewTask,
   deleteTask,
