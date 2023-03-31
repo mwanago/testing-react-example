@@ -13,7 +13,7 @@ describe('The Counter component', () => {
       expect(paragraph).toBeDefined();
     });
   });
-  describe('if the button clicked once', () => {
+  describe('if the button is clicked once', () => {
     it('should display 1', async () => {
       const counter = render(<Counter />);
 
@@ -22,6 +22,22 @@ describe('The Counter component', () => {
       fireEvent.click(button);
 
       const paragraph = await counter.findByText('The number of clicks: 1', {
+        selector: 'p',
+      });
+
+      expect(paragraph).toBeDefined();
+    });
+  });
+  describe('if the button is clicked twice', () => {
+    it('should display 2', async () => {
+      const counter = render(<Counter />);
+
+      const button = counter.getByText('Click', { selector: 'button' });
+
+      fireEvent.click(button);
+      fireEvent.click(button);
+
+      const paragraph = await counter.findByText('The number of clicks: 2', {
         selector: 'p',
       });
 
