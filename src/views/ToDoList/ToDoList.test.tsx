@@ -48,6 +48,7 @@ describe('The ToDoList', () => {
       title: 'qui ullam ratione quibusdam voluptatem quia omnis',
       completed: true,
     };
+
     returnedTasksList = [task1, task2, task3, task4];
     newTaskTitle = 'mocked task';
     newTaskMock = {
@@ -56,6 +57,7 @@ describe('The ToDoList', () => {
       userId: 1,
       completed: false,
     };
+
     (toDosApi.fetchToDos as Mock).mockReturnValue(new Promise(() => null));
   });
 
