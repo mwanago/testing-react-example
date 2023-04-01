@@ -15,7 +15,8 @@ export const useToDoList = () => {
     setTaskInputValue(event.target.value);
   };
   async function fetchToDos() {
-    toDosApi.fetchToDos()
+    toDosApi
+      .fetchToDos()
       .then((tasksList) => {
         const { todo, finished } = splitTasksByStatus(tasksList);
         setToDoList([...todo]);
@@ -55,7 +56,8 @@ export const useToDoList = () => {
       userId: 1,
       completed: false,
     };
-    toDosApi.createNewTask(taskToAdd)
+    toDosApi
+      .createNewTask(taskToAdd)
       .then((newTask) => {
         toDoList.unshift(newTask);
         setToDoList([...toDoList]);
@@ -65,7 +67,8 @@ export const useToDoList = () => {
   };
 
   const handleDeleteTask = (task: Task) => {
-    toDosApi.deleteTask(task.id)
+    toDosApi
+      .deleteTask(task.id)
       .then(() => {
         const listForOperation = task.completed ? finishedList : toDoList;
         const taskIndexToDelete = listForOperation.findIndex(

@@ -18,7 +18,12 @@ export const ToDoListColumn = ({
       {tasksList.map((task) => (
         <div key={task.id}>
           <p>{task.title}</p>
-          <button onClick={() => handleDeleteTask(task)}>Delete</button>
+          <button
+            data-testid={`task-${task.id}-delete-button`}
+            onClick={() => handleDeleteTask(task)}
+          >
+            Delete
+          </button>
         </div>
       ))}
     </div>
