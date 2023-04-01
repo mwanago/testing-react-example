@@ -21,7 +21,7 @@ export const ToDoList = () => {
         <input
           onInput={handleTaskInputChange}
           value={taskInputValue}
-          placeholder="task name"
+          placeholder="title"
         />
         <button
           className="add-task-button"

@@ -2,7 +2,7 @@ import { vi, Mock } from 'vitest';
 import { Task } from '../../shared/types/Task';
 import { toDosApi } from '../../shared/api/toDosApi';
 import { ToDoList } from './index';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 vi.mock('../../shared/api/toDosApi', () => {
   return {
@@ -16,6 +16,7 @@ vi.mock('../../shared/api/toDosApi', () => {
 
 describe('The ToDoList', () => {
   let newTaskTitle: string;
+  let newTaskMock: Task;
   let task1: Task;
   let task2: Task;
   let task3: Task;
@@ -48,6 +49,13 @@ describe('The ToDoList', () => {
       completed: true,
     };
     returnedTasksList = [task1, task2, task3, task4];
+    newTaskTitle = 'mocked task';
+    newTaskMock = {
+      title: newTaskTitle,
+      id: 1,
+      userId: 1,
+      completed: false
+    };
     (toDosApi.fetchToDos as Mock).mockReturnValue(new Promise(() => null));
   });
 
@@ -92,6 +100,81 @@ describe('The ToDoList', () => {
 
         expect(errorParagraph).toBeDefined();
         expect(firstTaskParagraph).toBeNull();
+      });
+    });
+  });
+  describe('when user types the title', () => {
+    describe('and clicks the submit button', () => {
+      beforeEach(() => {
+        (toDosApi.fetchToDos as Mock).mockResolvedValue(returnedTasksList);
+        (toDosApi.createNewTask as Mock).mockReturnValue(new Promise(() => null));
+      })
+      it('should make attempt to create the POST request', async() => {
+        const toDoList = render(<ToDoList />);
+
+        const titleInput = toDoList.getByPlaceholderText('title');
+
+        fireEvent.input(titleInput, { target: { value: newTaskTitle } });
+
+        const button = toDoList.getByRole('button');
+
+        fireEvent.click(button)
+
+        expect(toDosApi.createNewTask).toHaveBeenCalledWith(newTaskMock)
+      })
+      describe('if the Api call is successful', () => {
+        beforeEach(() => {
+          (toDosApi.createNewTask as Mock).mockResolvedValue(newTaskMock);
+        })
+        it('should create new task and not throw error', async() => {
+          const toDoList = render(<ToDoList />);
+
+          const titleInput = toDoList.getByPlaceholderText('title');
+
+          fireEvent.change(titleInput, { target: { value: newTaskTitle } });
+
+          const button = toDoList.getByRole('button');
+
+          fireEvent.click(button)
+
+          const newTaskParagraph = await toDoList.findByText(newTaskTitle, {
+            selector: 'p',
+          });
+
+          const errorParagraph = toDoList.findByText(
+            'Failed to catch tasks list', {selector: 'p'}
+          )
+
+          expect(newTaskParagraph).toBeDefined()
+          expect(errorParagraph).toBeNull()
+        });
+      });
+      describe('if the Api call is unsuccessful', () => {
+        beforeEach(() => {
+          (toDosApi.createNewTask as Mock).mockRejectedValue(null);
+        })
+        it('should throw error and not create task', async() => {
+          const toDoList = render(<ToDoList />);
+
+          const titleInput = toDoList.getByPlaceholderText('title');
+
+          fireEvent.change(titleInput, { target: { value: newTaskTitle } });
+
+          const button = toDoList.getByRole('button');
+
+          fireEvent.click(button)
+
+          const newTaskParagraph = toDoList.queryByText(newTaskTitle, {
+            selector: 'p',
+          });
+
+          const errorParagraph = await toDoList.findByText(
+            'Something went wrong when creating the task', {selector: 'p'}
+          );
+
+          expect(newTaskParagraph).toBeNull()
+          expect(errorParagraph).toBeDefined()
+        });
       });
     });
   });
