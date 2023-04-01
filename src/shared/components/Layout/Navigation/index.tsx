@@ -12,6 +12,7 @@ const navigationItems = [
   { path: '/posts', label: 'Posts' },
   { path: '/counter', label: 'Counter' },
   { path: '/create-comment', label: 'Create comment' },
+  { path: 'todos', label: 'To do list' },
 ];
 
 export const Navigation: FC<Props> = ({ onClose, ...materialProps }) => {

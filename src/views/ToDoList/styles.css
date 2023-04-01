@@ -1,0 +1,14 @@
+.lists-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.tasks-column {
+    display: flex;
+    flex-direction: column;
+    border: double black;
+    gap: 10px;
+}

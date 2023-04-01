@@ -4,6 +4,7 @@ import { Home } from './views/Home';
 import { PostsList } from './views/PostsList';
 import { Counter } from './views/Counter';
 import { CreateCommentForm } from './views/CreateCommentForm';
+import { ToDoList } from './views/ToDoList';
 
 export const Routing = () => {
   return (
@@ -12,6 +13,7 @@ export const Routing = () => {
       <Route path="/posts" element={<PostsList />} />
       <Route path="/counter" element={<Counter />} />
       <Route path="/create-comment" element={<CreateCommentForm />} />
+      <Route path="/todos" element={<ToDoList />} />
     </Routes>
   );
 };
